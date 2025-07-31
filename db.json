@@ -1,0 +1,137 @@
+{
+  "projects": [
+    {
+      "id": "1",
+      "name": "SIP On Demand Release 11.1",
+      "status": "completed",
+      "testLead": "Naamrata Shinde",
+      "testers": [
+        "Rutik Erole",
+        "Shweta Pardeshi"
+      ],
+      "totalTestCases": 40,
+      "completedTestCases": 40,
+      "createdAt": "2025-07-01"
+    },
+    {
+      "id": "2",
+      "name": "Salesforce Enhancement",
+      "status": "completed",
+      "testLead": "Shraddha Chaudhari",
+      "testers": [
+        "Parth Supekar",
+        "Darshan Jadhav"
+      ],
+      "totalTestCases": 80,
+      "completedTestCases": 80,
+      "createdAt": "2025-07-10"
+    },
+    {
+      "id": "3",
+      "name": "TSA Exit PR2",
+      "status": "triggered",
+      "testLead": "Varsha Patil",
+      "testers": [
+        "Mayur Bidkar",
+        "Shruti Sancheti"
+      ],
+      "totalTestCases": 120,
+      "completedTestCases": 0,
+      "createdAt": "2025-07-20"
+    },
+    {
+      "id": "4",
+      "name": "CPQ SQT Release 6",
+      "status": "ongoing",
+      "testLead": "Naamrata Shinde",
+      "testers": [
+        "Rutik Erole",
+        "Shweta Pardeshi"
+      ],
+      "totalTestCases": 120,
+      "completedTestCases": 25,
+      "createdAt": "2025-07-01"
+    },
+    {
+      "id": "5",
+      "name": "Colt Online Enhancement",
+      "status": "triggered",
+      "testLead": "Shraddha Chaudhari",
+      "testers": [
+        "Parth Supekar",
+        "Darshan Jadhav"
+      ],
+      "totalTestCases": 40,
+      "completedTestCases": 0,
+      "createdAt": "2025-07-10"
+    },
+    {
+      "id": "6",
+      "name": "SOD R12",
+      "status": "triggered",
+      "testLead": "Namrata Shinde",
+      "testers": [
+        "Rutik Erole",
+        "Shruti Sancheti",
+        "Shweta Pardeshi"
+      ],
+      "totalTestCases": 100,
+      "completedTestCases": 10,
+      "createdAt": "2025-07-20"
+    }
+  ],
+
+    "testCases": [
+    {
+      "id": 1,
+      "title": "Verify Siebel login with valid credentials",
+      "status": "Pending"
+    },
+    {
+      "id": 2,
+      "title": "Validate new SIP order creation in Siebel CRM",
+      "status": "In Progress"
+    },
+    {
+      "id": 3,
+      "title": "Check mandatory field validation on order form",
+      "status": "Failed"
+    },
+    {
+      "id": 4,
+      "title": "Verify order status change from Commercial to Technical stage",
+      "status": "Passed"
+    },
+    {
+      "id": 5,
+      "title": "Ensure SIP product is selectable in product catalog",
+      "status": "Passed"
+    },
+    {
+      "id": 6,
+      "title": "Test OCN search and link with new order in Siebel",
+      "status": "Passed"
+    },
+    {
+      "id": 7,
+      "title": "Check if CIC field values are correctly stored in top applet",
+      "status": "Passed"
+    },
+    {
+      "id": 8,
+      "title": "Validate backend sync after SIP order submission",
+      "status": "Passed"
+    },
+    {
+      "id": 9,
+      "title": "Verify number porting data is saved and retrievable",
+      "status": "Passed"
+    },
+    {
+      "id": 10,
+      "title": "Ensure user is redirected to dashboard after saving SIP order",
+      "status": "Passed"
+    }
+  ]
+
+}
