@@ -24,9 +24,7 @@ const ProjectDetails = ({ role }: { role: 'admin' | 'tester' }) => {
   const fetchProjects = async () => {
     try {
       const res = await getProjects();
-      const projectData = res.data.find(
-        (project) => String(project.id) === id && project.testers.includes("Rutik Erole")
-      );
+      const projectData = res.data.find((project) => String(project.id) === id);
       if (!projectData) {
         toast.error("Project not found or not assigned to you");
         return;
@@ -36,8 +34,10 @@ const ProjectDetails = ({ role }: { role: 'admin' | 'tester' }) => {
 
 
     } catch (error) {
-      console.error("Failed to fetch project", error);
-      toast.error("Failed to load project. Please try again.");
+      if(role === 'tester'){
+       console.error("Failed to fetch project", error);
+       toast.error("Failed to load project. Please try again.");
+      }
     }
   };
 
@@ -54,7 +54,7 @@ useEffect(() => {
   useEffect(() => {
   const fetchTestCases = async () => {
     try {
-      const resTestCases = await fetch(`http://localhost:5000/testCases`);
+      const resTestCases = await fetch(`https://testmagic-backend.onrender.com/testCases`);
       const testCasesData = await resTestCases.json();
       setTestCases(testCasesData);
     } catch (error) {

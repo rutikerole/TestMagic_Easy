@@ -1,7 +1,7 @@
 import { Button } from '../components/button'
 import { useNavigate } from 'react-router-dom'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/card';
-import { FolderOpen, Calendar, BarChart3, LogOut, Plus, User, ListStartIcon, Eye, FileText,Trash2 } from 'lucide-react';
+import { FolderOpen, Calendar, BarChart3, LogOut, Plus, User, ListStartIcon, Eye, Trash2 } from 'lucide-react';
 import { useEffect, useState } from 'react'
 import StatsCard from '../components/statsCards';
 import toast from 'react-hot-toast';
@@ -162,7 +162,7 @@ function AdminDashboard() {
                   variant="outline"
                   size="sm"
                   onClick={() => navigate(`/admin/project/${project.id}`)}
-                  className="flex-1 border-gray-300 flex items-center gap-2 hover:bg-gray-50 transition"
+                  className="flex-1 border-gray-300 text-white bg-blue-600 flex items-center gap-2 hover:bg-green-600 transition"
                 ><Eye className="h-4 w-4" />
                   Details
                 </Button>
@@ -170,18 +170,8 @@ function AdminDashboard() {
                 <Button
                   variant="outline"
                   size="sm"
-                  onClick={() => navigate(`project/report/${project.id}`)}
-                  className="flex items-center gap-2 hover:bg-gray-50 transition"
-                >
-                  <FileText className="h-4 w-4" />
-                  Report
-                </Button>
-
-                <Button
-                  variant="outline"
-                  size="sm"
                   onClick={() => handleDelete(project.id!)}
-                  className="flex items-center gap-2 hover:bg-gray-50 transition"
+                  className="flex bg-red-600 text-white items-center gap-2 hover:bg-red-700 transition"
                 >
                   <Trash2 className="h-4 w-4" />
                   Delete

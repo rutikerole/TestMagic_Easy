@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./car
 import { Tabs, TabsList, TabsTrigger } from "./tabs";
 import { Shield, User, Mail, Lock } from "lucide-react";
 import clsx from "clsx";
+import toast from "react-hot-toast";
 
 function Login() {
   const navigate = useNavigate()
@@ -28,7 +29,7 @@ function Login() {
       return;
     }
     if (!selectedRole) {
-      alert("Please select a role first.");
+      toast.error("Please select a role first.");
       return;
     }
 
@@ -47,10 +48,10 @@ function Login() {
       localStorage.setItem("userRole", user.role);  
       localStorage.setItem("userEmail", user.email); // optional
 
-      alert(`Welcome, ${user.role}!`);
+      toast.success(`Welcome, ${user.role}!`);
       navigate(`/${user.role}`);
     } else {
-      alert("Invalid email or password.");
+      toast.error("Invalid email or password.");
     }
   }
 

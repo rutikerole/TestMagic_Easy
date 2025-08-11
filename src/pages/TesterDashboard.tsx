@@ -10,23 +10,45 @@ import type { Project } from '../utils/projectTypes';
 
 function TesterDashboard() {
   const navigate = useNavigate();
+
+  const [allProjects, setAllProjects] = useState<Project[]>([]);
   const [projects, setProjects] = useState<Project[]>([]);
+  const [tester, setTester] = useState('');
+  const [allTesters, setAllTesters] = useState<string[]>([]);
 
   useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        const res = await getProjects();
-        const projectData = res.data.filter(project => project?.testers?.includes("Rutik Erole"))
-        setProjects(projectData)
-        console.log(projectData)
-      } catch (error) {
-        console.error("Failed to fetch projects", error);
-        toast.error("Failed to load projects. Please try again.");
-      } 
-    };
+  const fetchProjects = async () => {
+    try {
+      const res = await getProjects();
+      const allData = res.data;
 
-    fetchProjects();
+      setAllProjects(allData);
+      setProjects(allData);
+
+      // 🧠 Get all unique testers
+      const testerSet = new Set<string>();
+      allData.forEach(p => p?.testers?.forEach(t => testerSet.add(t)));
+      setAllTesters([...testerSet]);
+
+    } catch (error) {
+      console.error("Failed to fetch projects", error);
+      toast.error("Failed to load projects. Please try again.");
+    }
+  };
+
+  fetchProjects();
   }, []);
+
+  useEffect(() => {
+   if (!tester) {
+    setProjects(allProjects);
+   } else {
+     const filtered = allProjects.filter(p => p?.testers?.includes(tester));
+     setProjects(filtered);
+   }
+  }, [tester, allProjects]);
+
+
 
   useEffect(() => {
     const userString = localStorage.getItem("loggedInUser");
@@ -105,11 +127,29 @@ function TesterDashboard() {
         </div>
 
         {/* Projects Section */}
-        <div className="text-left p-2">
-          <h2 className="text-3xl font-bold text-gray-800">Assigned Projects</h2>
-          <p>Projects assigned to you for testing</p>
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 px-2 py-4">
+          <div className='text-left'>
+            <h2 className="text-3xl font-bold text-gray-900">Assigned Projects</h2>
+            <p className="text-gray-600 text-sm mt-1">Projects assigned to you for testing</p>
+          </div>
+        
+          <div className="w-full md:w-64">
+            <label className="block text-left px-2 text-sm font-medium text-gray-700 mb-1">Filter by Tester</label>
+            <select
+              value={tester}
+              onChange={(e) => setTester(e.target.value)}
+              className="w-full h-10 px-3 border border-gray-300 rounded-lg shadow-sm text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <option value="">All Testers</option>
+              {allTesters.map((t, i) => (
+                <option key={i} value={t}>
+                  {t}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
-
+                
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
