@@ -1,5 +1,14 @@
 // components/BarGraph.tsx
-import { BarChart,Bar,XAxis,YAxis,ResponsiveContainer,Cell,CartesianGrid,Tooltip, } from 'recharts';
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  ResponsiveContainer,
+  Cell,
+  CartesianGrid,
+  Tooltip,
+} from "recharts";
 
 type StatusCounts = { [key: string]: number };
 type BarGraphProps = { statusCounts: StatusCounts };
@@ -12,7 +21,12 @@ type TriangleBarProps = {
   height: number;
 };
 
-const getPath = (x: number, y: number, width: number, height: number): string => {
+const getPath = (
+  x: number,
+  y: number,
+  width: number,
+  height: number
+): string => {
   return `M${x},${y + height}
     C${x + width / 3},${y + height} ${x + width / 2},${y + height / 3}
     ${x + width / 2},${y}
@@ -21,14 +35,23 @@ const getPath = (x: number, y: number, width: number, height: number): string =>
     Z`;
 };
 
-const TriangleBar = ({ fill, x, y, width, height }: TriangleBarProps) => {
+const TriangleBar = ({
+  fill,
+  x,
+  y,
+  width,
+  height,
+}: TriangleBarProps) => {
   return <path d={getPath(x, y, width, height)} stroke="none" fill={fill} />;
 };
 
 export const BarGraph = ({ statusCounts }: BarGraphProps) => {
-  const barColors = ['#facc15', '#60a5fa', '#22c55e', '#ef4444'];
+  const barColors = ["#facc15", "#60a5fa", "#22c55e", "#ef4444"];
 
-  const testStatusData = Object.entries(statusCounts).map(([name, count]) => ({ name, count }));
+  const testStatusData = Object.entries(statusCounts).map(([name, count]) => ({
+    name,
+    count,
+  }));
 
   return (
     <section className="mt-10 bg-white rounded-2xl shadow-md p-6">
@@ -44,11 +67,15 @@ export const BarGraph = ({ statusCounts }: BarGraphProps) => {
           <XAxis dataKey="name" />
           <YAxis />
           <Tooltip />
-          <Bar dataKey="count" shape={<TriangleBar />} label={{ position: 'top' }}>
-            {testStatusData.map((entry, i) => (
-              <Cell key={`cell-${i}`} fill={barColors[i % barColors.length]} />
-            ))}
-          </Bar>
+         <Bar
+           dataKey="count"
+           shape={(props: unknown) => <TriangleBar {...(props as TriangleBarProps)} />}
+           label={{ position: "top" }}
+         >
+          {testStatusData.map((_, i) => (
+           <Cell key={`cell-${i}`} fill={barColors[i % barColors.length]} />
+          ))}
+         </Bar>
         </BarChart>
       </ResponsiveContainer>
     </section>
